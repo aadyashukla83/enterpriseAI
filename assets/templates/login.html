@@ -1,0 +1,138 @@
+{% extends 'baselog.html' %}
+{% block loginbody %}
+{% load staticfiles %}
+<style>
+.userna{
+    border:1px solid white;
+    background:none;
+    border-radius:5px;
+    text-align:center;
+}
+.userna:hover{
+}
+.passwo{
+border:1px solid white;
+background:none;
+border-radius:5px;
+text-align:center;
+}
+input[type="text"].userna::-webkit-input-placeholder,input[type="password"].passwo::-webkit-input-placeholder {
+  color: white;
+  opacity:1;
+}
+table tr {
+height:50px;
+
+}
+input[type=submit].subbtn{
+width:50%;
+background:none;
+border:1px solid white;
+text-transform:uppercase;
+color:white;
+cursor:pointer;
+padding:2px;
+}
+input[type=submit].subbtn:hover{
+background:white;
+color:rgb(94, 142, 137);
+font-weight: bold;
+}
+table.logintable tr td a{
+text-decoration:none;
+color:white;
+text-transform:uppercase;
+padding:5px;
+border:1px solid white;
+font-weight: bold;
+}
+table.logintable tr td a:hover{
+background:white;
+color:rgb(94, 142, 137);
+}
+div.users{
+position:absolute;
+bottom:1%;
+left:45%;
+height:3%;
+background:red;
+}
+a.user, a.admin{
+text-transform:uppercase;
+text-decoration:none;
+background:green;
+}
+div.users{
+border-bottom:1px solid green;
+border-right:1px solid green;
+border-left:1px solid green;
+}
+a.user{
+border-top:2px solid white;
+}
+a.admin{
+border-top:1px solid green;
+}
+.mySlides {display:none;}
+a.userme{
+text-decoration:none;
+color:white;
+}
+a.adminme{
+text-decoration:none;
+color:white;
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="{% static 'css/stylelog.css' %}">
+<img src="{% static 'images/title2.png' %}" style="width:100%;margin-top:2%;">
+<!--<img src="{% static 'images/title1.png' %}" style="width:60%;margin-left:20%;margin-top:-3%;">-->
+<div class="mainblog">
+<img src="{% static 'images/user1.png' %}" style="position:absolute;top:2%;left:35%;">
+<form method="post" autocomplete="off">
+{% csrf_token %}
+<table class="logintable" style="margin-top:50px">
+  <tr>
+     <td>{{form.username}}</td>
+  </tr>
+  <tr>
+     <td>{{form.password}}</td>
+  </tr>
+  <tr>
+     <td colspan="2" align="center"><input type="submit" value="submit" class="subbtn" /></td>
+  </tr>
+  <tr>
+     <td colspan="2" align="center"><a href="{% url 'users:registration' %}">Register Here</a></td>
+  </tr>
+</table>
+</form>
+</div>
+<div style="background:green;padding:10px;float:right;position:absolute;top:30%;right:10%;">
+<a href="{% url 'users:login' %}" class="userme">User Login</a><br/><br/>
+<a href="{% url 'admins:login' %}" class="adminme">Admin Login</a>
+</div>
+<img src="{% static 'images/logingi.gif' %}" style="position:absolute;top:50%;right:1%;width:30%;">
+<div class="w3-content w3-section" style="max-width:500px;margin:0 auto 0 1%;">
+  <img class="mySlides" src="{% static 'images/1.png' %}" style="width:80%">
+  <img class="mySlides" src="{% static 'images/2.png' %}" style="width:80%">
+</div>
+<div style="margin-top:150px;background:rgba(94, 142, 137,0.8);border-bottom:1px solid green;border-top:1px solid green;"><marquee behavior="alternate"><p style="color:white;font-size:20px;text-transform:uppercase">Enhancement of Customer Satisfaction</p></marquee></div>
+<script>
+var myIndex = 0;
+carousel();
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";  
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}    
+    x[myIndex-1].style.display = "block";  
+    setTimeout(carousel, 2000); // Change image every 2 seconds
+}
+</script>
+
+{% endblock %}
