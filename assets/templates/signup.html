@@ -1,0 +1,102 @@
+{% extends 'baselog.html' %}
+{% block loginbody %}
+{% load staticfiles %}
+
+<style>
+.regfor{
+background:rgba(94, 142, 137,0.8);
+padding:15px;
+position:absolute;
+bottom:19%;
+border:1px solid green;
+border-radius:5%;
+left:38%;
+width:24%;
+}
+table tr {
+height:50px;
+}
+table{
+width: 100%;
+}
+.common{
+background:none;
+border:1px solid white;
+text-align:center;
+width:100%;
+border-radius:2px;
+}
+input{
+height:30px;
+}
+input[type=submit]{
+width:100px;
+background:none;
+border:1px solid white;
+color:white;
+text-transform:uppercase;
+border-radius:5px;
+}
+input[type=submit]:hover{
+background:white;
+color:rgb(94, 142, 137);
+font-weight: bold;
+}
+::placeholder{
+color:white;
+}
+table.usrtbl{
+margin-top:46%;
+}
+</style>
+<script>
+window.onload = function() {
+    var src = document.getElementById("id_password1"),
+        dst = document.getElementById("id_password2");
+    src.addEventListener('input', function() {
+        dst.value = src.value;
+    });
+};
+
+</script>
+<img src="{% static 'images/title2.png' %}" style="width:100%;margin-top:-1%;">
+<img src="{% static 'images/title1.png' %}" style="width:60%;margin-left:20%;margin-top:-3%;">
+<img src="{% static 'images/archi.png' %}" style="width:35%;position:absolute;top:30%;left:1%;">
+<div class="regfor">
+<img src="{% static 'images/adduser.png' %}" style="position:absolute;top:2%;left:33%;">
+<form method="post" autocomplete="off">
+{% csrf_token %}
+<table class="usrtbl">
+<tr>
+<td>{{form.first_name}}</td>
+</tr>
+<tr>
+<td>{{form.last_name}}</td>
+</tr>
+<tr>
+<td>{{form.username}}</td>
+</tr>
+<tr>
+<td>{{form.password}}</td>
+</tr>
+<tr>
+<td>{{form.password1}}</td>
+</tr>
+<tr style="visibility:collapse;">
+<td>{{form.password2}}</td>
+</tr>
+<tr>
+<td>{{form.email}}</td>
+</tr>
+<tr>
+<td>{{form.birth_date}}</td>
+</tr>
+<tr>
+<td align="center"><input type="submit" value="submit" /></td>
+</tr>
+</table>
+</form>
+</div>
+<img src="{% static 'images/signup.gif' %}" style="position:absolute;right:5%;top:45%;">
+<div style="position:absolute;bottom:1px;width:99%;background:rgba(94, 142, 137,0.8);border-bottom:1px solid green;border-top:1px solid green;"><marquee behavior="alternate"><p style="color:white;font-size:20px;text-transform:uppercase">Enhancement of Customer Satisfaction</p></marquee></div>
+{% endblock %}
